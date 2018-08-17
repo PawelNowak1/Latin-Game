@@ -1,5 +1,6 @@
 package com.latingame.pawel.latingame;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +26,8 @@ public class MenuActivity extends AppCompatActivity {
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: new howManyplayersaCtivity
+                Intent newActivityStart = new Intent(MenuActivity.this, HowManyPlayersActivity.class);
+                MenuActivity.this.startActivity(newActivityStart);
             }
         });
 
