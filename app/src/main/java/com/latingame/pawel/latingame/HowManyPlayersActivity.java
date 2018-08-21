@@ -10,6 +10,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class HowManyPlayersActivity extends AppCompatActivity {
+
+    private SeekBar seekBar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +27,7 @@ public class HowManyPlayersActivity extends AppCompatActivity {
 
     private void initSeekBar(){
         final int MAX_NUMBER_OF_PLAYERS = 5;
-        SeekBar seekBar = findViewById(R.id.seekBar);
+        seekBar = findViewById(R.id.seekBar);
         seekBar.setMax(MAX_NUMBER_OF_PLAYERS - 1);
         final TextView seekBarValue = findViewById(R.id.textViewHowManyPlayers);
         seekBarValue.setText("1");
@@ -53,6 +56,8 @@ public class HowManyPlayersActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent newActivityStart = new Intent(HowManyPlayersActivity.this, GiveNamesActivity.class);
+                newActivityStart.putExtra("Progress", seekBar.getProgress() + 1);
+
                 HowManyPlayersActivity.this.startActivity(newActivityStart);
             }
         });
