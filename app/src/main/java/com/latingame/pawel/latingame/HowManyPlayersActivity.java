@@ -55,6 +55,8 @@ public class HowManyPlayersActivity extends AppCompatActivity {
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //if(seekBar.getProgress() == 0)
+
                 Intent newActivityStart = new Intent(HowManyPlayersActivity.this, GiveNamesActivity.class);
                 newActivityStart.putExtra("Progress", seekBar.getProgress() + 1);
 
