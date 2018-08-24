@@ -1,6 +1,7 @@
 package com.latingame.pawel.latingame;
 
 import android.annotation.SuppressLint;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ import com.latingame.pawel.latingame.game.Word;
 public class GameActivity extends AppCompatActivity {
 
     private static final String TAG = GameActivity.class.getSimpleName();
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,20 +47,47 @@ public class GameActivity extends AppCompatActivity {
 
     @SuppressLint("ClickableViewAccessibility")
     private void initProgressBar(){
-        final ProgressBar progressBar = findViewById(R.id.progressBar);
+
+        progressBar = findViewById(R.id.progressBar);
         ImageButton correctBtn = findViewById(R.id.correctBtn);
 
         correctBtn.setOnTouchListener(new View.OnTouchListener() {
+
+            private Handler mHandler;
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                int progress = progressBar.getProgress() + 5;
-                progressBar.setProgress(progress);
-                Log.d(TAG, "onTouch: KURWA O CO CHODZI " + progress);
+            public boolean onTouch(View view, MotionEvent event) {
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        if (mHandler != null)
+                            return true;
+                        mHandler = new Handler();
+                        mHandler.postDelayed(mAction, 500);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if (mHandler == null)
+                            return true;
+                        mHandler.removeCallbacks(mAction);
+                        mHandler = null;
+                        if(progressBar.getProgress() < 100)
+                            progressBar.setProgress(0);
+                        break;
+                }
                 return false;
             }
+
+            Runnable mAction = new Runnable() {
+                @Override
+                public void run() {
+                    int progress = progressBar.getProgress();
+                    progressBar.setProgress(progress + 2);
+                    mHandler.postDelayed(this, 1);
+                }
+            };
         });
 
     }
+
+
     private void initPlayers(){
         Bundle extras = getIntent().getExtras();
         assert extras != null;

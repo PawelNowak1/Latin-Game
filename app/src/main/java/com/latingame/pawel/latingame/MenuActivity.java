@@ -26,8 +26,7 @@ public class MenuActivity extends AppCompatActivity {
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newActivityStart = new Intent(MenuActivity.this, HowManyPlayersActivity.class);
-                MenuActivity.this.startActivity(newActivityStart);
+                startHowManyActivity();
             }
         });
 
@@ -40,5 +39,9 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+    private void startHowManyActivity(){
+        Intent newActivityStart = new Intent(MenuActivity.this, HowManyPlayersActivity.class);
+        MenuActivity.this.startActivity(newActivityStart);
+    }
 
 }

@@ -7,15 +7,21 @@
     tools:context=".MenuActivity">
 
     <Button
+        android:id="@+id/playBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Graj"
-        android:id="@+id/playBtn"/>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="212dp"
+        android:text="Graj" />
+
     <Button
+        android:id="@+id/howToPlayBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Instrukcja"
-        android:id="@+id/howToPlayBtn"
-        android:layout_below="@+id/playBtn"/>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="212dp"
+        android:text="Instrukcja" />
 
 </RelativeLayout>

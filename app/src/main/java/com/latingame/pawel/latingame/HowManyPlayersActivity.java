@@ -27,10 +27,12 @@ public class HowManyPlayersActivity extends AppCompatActivity {
 
     private void initSeekBar(){
         final int MAX_NUMBER_OF_PLAYERS = 5;
+        final String START_VALUE = "1";
+
         seekBar = findViewById(R.id.seekBar);
         seekBar.setMax(MAX_NUMBER_OF_PLAYERS - 1);
         final TextView seekBarValue = findViewById(R.id.textViewHowManyPlayers);
-        seekBarValue.setText("1");
+        seekBarValue.setText(START_VALUE);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -53,15 +55,18 @@ public class HowManyPlayersActivity extends AppCompatActivity {
     private void initButton(){
         Button playButton = findViewById(R.id.button);
         playButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                //if(seekBar.getProgress() == 0)
-
-                Intent newActivityStart = new Intent(HowManyPlayersActivity.this, GiveNamesActivity.class);
-                newActivityStart.putExtra("Progress", seekBar.getProgress() + 1);
-
-                HowManyPlayersActivity.this.startActivity(newActivityStart);
+                startGiveNamesActivity();
             }
         });
+    }
+
+    private void startGiveNamesActivity(){
+        Intent newActivityStart = new Intent(HowManyPlayersActivity.this, GiveNamesActivity.class);
+        newActivityStart.putExtra("Progress", seekBar.getProgress() + 1);
+
+        HowManyPlayersActivity.this.startActivity(newActivityStart);
     }
 }
