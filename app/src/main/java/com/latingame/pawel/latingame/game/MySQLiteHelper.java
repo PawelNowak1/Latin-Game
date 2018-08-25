@@ -10,6 +10,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "WordsDB";
+    public static final int NUMBER_OF_WORDS = 5;
 
     // Books table name
     private static final String TABLE_WORDS = "words";
@@ -79,6 +80,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         word.setMaxim(cursor.getString(1));
         word.setTranslation(cursor.getString(2));
         word.setExtraInfo(cursor.getString(3));
+        word.setSplit();
         cursor.close();
         return word;
     }

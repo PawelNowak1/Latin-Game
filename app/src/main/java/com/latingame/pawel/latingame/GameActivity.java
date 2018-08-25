@@ -1,13 +1,12 @@
 package com.latingame.pawel.latingame;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,40 +17,84 @@ import com.latingame.pawel.latingame.game.Word;
 public class GameActivity extends AppCompatActivity {
 
     private static final String TAG = GameActivity.class.getSimpleName();
-    private ProgressBar progressBar;
+    private String[] playerNames;
+    private int whosTurn = 0; // first player has index 0
+    private int whichMaxim = 1;
+    private int whichSplit = 0;
+    private TextView textViewPlayersName, textViewWord;
+    private MySQLiteHelper db;
+    private Word word;
+    private SharedPreferences sharedPref;
+    private static final int CORRECT = 0;
+    private static final int WRONG = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         init();
+        update();
     }
 
+    private void update(){
+        showNextWord();
+        updatePlayerTurn();
+    }
+
+    private void showNextWord(){
+        textViewWord.setText(word.getSplit()[whichSplit]);
+        whichSplit++;
+        // TODO: NEXT ACTIVITY IF LAST
+    }
+
+    private void updatePlayerTurn(){
+        textViewPlayersName.setText(playerNames[whosTurn]);
+        whosTurn++;
+        if(whosTurn >= playerNames.length)
+            whosTurn = 0;
+    }
     private void init(){
         initPlayers();
-        initWords();
-        initProgressBar();
+        initWord();
+        initProgressBars();
+        initTextViews();
     }
 
-    private void initWords(){
-        MySQLiteHelper db = new MySQLiteHelper(this);
-        db.addWord(new Word("A fructibus eorum cognoscetis eos", "Po ich owocach ich poznacie", "Jezus Chrystus - Wulgata, Ewangelia Mateusza 7:15, 20"));
-        db.addWord(new Word("A planta pedis usque verticum eius", "Od podeszwy stopy do głowy jego", "Wulgata, Księga Hioba 2, 7"));
-        db.addWord(new Word("Ab alio exspectes, alteri quod feceris", "Od innego oczekuj tego, co robisz drugiemu; jak Kuba Bogu, tak Bóg Kubie", "Autor: Seneka"));
-        db.addWord(new Word("Absterget Deus omnem lacrimam ab oculis eorum", "I otrze Bóg wszelką łzę z oczu ich. ", "Wulgata, Apokalipsa wg św. Jana"));
-        db.addWord(new Word("Actus hominis non dignitas iudicentur", "Niech będą sądzone czyny człowieka, a nie jego godność", "Minucjusz Feliks, Octavius 36"));
+    private void initTextViews(){
+        textViewPlayersName = findViewById(R.id.whichPlayer);
+        textViewWord = findViewById(R.id.wordInLatin);
+    }
 
+    private void initProgressBars(){
+        ProgressBar progressBarCorrect, progressBarWrong;
+        ImageButton correctBtn, wrongBtn;
 
-        db.addWord(new Word("", "", ""));
+        progressBarCorrect = findViewById(R.id.progressBarCorrect);
+        correctBtn = findViewById(R.id.correctBtn);
+        initProgressBar(progressBarCorrect, correctBtn, CORRECT);
+
+        progressBarWrong = findViewById(R.id.progressBarWrong);
+        wrongBtn = findViewById(R.id.wrongBtn);
+        initProgressBar(progressBarWrong, wrongBtn, WRONG);
+    }
+
+    private void initWord(){
+        db = new MySQLiteHelper(this);
+        sharedPref = getSharedPreferences("com.latingame.pawel.latingame", MODE_PRIVATE);
+
+        whichMaxim = sharedPref.getInt("whichMaxim", whichMaxim);
+        word = db.getWord(whichMaxim);
+
+    }
+
+    private void wrongAnswer(){
+        
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private void initProgressBar(){
+    private void initProgressBar(final ProgressBar progressBar, ImageButton button, final int BUTTON_ID){
 
-        progressBar = findViewById(R.id.progressBar);
-        ImageButton correctBtn = findViewById(R.id.correctBtn);
-
-        correctBtn.setOnTouchListener(new View.OnTouchListener() {
+        button.setOnTouchListener(new View.OnTouchListener() {
 
             private Handler mHandler;
             @Override
@@ -80,6 +123,12 @@ public class GameActivity extends AppCompatActivity {
                 public void run() {
                     int progress = progressBar.getProgress();
                     progressBar.setProgress(progress + 2);
+                    if(progressBar.getProgress() > 99 && BUTTON_ID == CORRECT){
+                        progressBar.setProgress(0);
+                        update();
+                    } else if(progressBar.getProgress() > 99 && BUTTON_ID == WRONG){
+                        progressBar.setProgress(0);
+                    }
                     mHandler.postDelayed(this, 1);
                 }
             };
@@ -91,8 +140,6 @@ public class GameActivity extends AppCompatActivity {
     private void initPlayers(){
         Bundle extras = getIntent().getExtras();
         assert extras != null;
-        String[] names = extras.getStringArray("names");
-        TextView textView = findViewById(R.id.textView3);
-
+        playerNames = extras.getStringArray("names");
     }
 }

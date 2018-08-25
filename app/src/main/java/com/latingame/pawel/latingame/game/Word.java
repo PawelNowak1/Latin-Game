@@ -5,6 +5,7 @@ public class Word {
     private String maxim;
     private String translation;
     private String extraInfo;
+    public String[] split;
 
     public Word(){}
 
@@ -12,6 +13,11 @@ public class Word {
         this.maxim = maxim;
         this.translation = translation;
         this.extraInfo = extraInfo;
+        split = maxim.split("\\s+");
+    }
+
+    public String[] getSplit() {
+        return split;
     }
 
     @Override
@@ -19,7 +25,9 @@ public class Word {
         return maxim + "\n" + translation + "\n" + extraInfo;
 
     }
-
+    public void setSplit(){
+        split = maxim.split("\\s+");
+    }
     public String getMaxim() {
         return maxim;
     }

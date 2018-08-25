@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/wordInLatin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -19,7 +19,7 @@
         android:textSize="40sp"/>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/whichPlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -35,13 +35,13 @@
         android:id="@+id/correctBtn"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:layout_alignStart="@+id/progressBar"
-        android:layout_alignLeft="@+id/progressBar"
-        android:layout_alignTop="@+id/progressBar"
+        android:layout_alignStart="@+id/progressBarCorrect"
+        android:layout_alignLeft="@+id/progressBarCorrect"
+        android:layout_alignTop="@+id/progressBarCorrect"
         android:src="@drawable/ic_good" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarCorrect"
         style="?android:progressBarStyleHorizontal"
         android:layout_width="160dp"
         android:layout_height="160dp"
@@ -49,8 +49,34 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="113dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginLeft="39dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:progress="0"
         android:progressDrawable="@drawable/circle" />
+
+    <ProgressBar
+        android:id="@+id/progressBarWrong"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="113dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:progress="0"
+        android:progressDrawable="@drawable/circle" />
+
+    <ImageButton
+        android:contentDescription="HALKO"
+        android:background="@drawable/circle"
+        android:scaleType="fitXY"
+        android:id="@+id/wrongBtn"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_alignStart="@+id/progressBarWrong"
+        android:layout_alignLeft="@+id/progressBarWrong"
+        android:layout_alignTop="@+id/progressBarWrong"
+        android:src="@drawable/ic_wrong" />
 </RelativeLayout>
