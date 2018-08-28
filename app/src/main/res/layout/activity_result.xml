@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResultActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="62dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="107dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="153dp"
+        android:text="TextView" />
+
+    <ImageButton
+        android:contentDescription="HALKO"
+        android:background="@drawable/circle"
+        android:scaleType="fitXY"
+        android:id="@+id/result_correctBtn"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_alignStart="@+id/result_progressBarCorrect"
+        android:layout_alignLeft="@+id/result_progressBarCorrect"
+        android:layout_alignTop="@+id/result_progressBarCorrect"
+        android:src="@drawable/ic_good" />
+
+    <ProgressBar
+        android:id="@+id/result_progressBarCorrect"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="113dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:progress="0"
+        android:progressDrawable="@drawable/circle" />
+
+    <ProgressBar
+        android:id="@+id/result_progressBarWrong"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="113dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:progress="0"
+        android:progressDrawable="@drawable/circle" />
+
+    <ImageButton
+        android:contentDescription="HALKO"
+        android:background="@drawable/circle"
+        android:scaleType="fitXY"
+        android:id="@+id/result_wrongBtn"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_alignStart="@+id/result_progressBarWrong"
+        android:layout_alignLeft="@+id/result_progressBarWrong"
+        android:layout_alignTop="@+id/result_progressBarWrong"
+        android:src="@drawable/ic_wrong" />
+</RelativeLayout>

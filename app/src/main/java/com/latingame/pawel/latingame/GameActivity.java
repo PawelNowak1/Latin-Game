@@ -1,6 +1,8 @@
 package com.latingame.pawel.latingame;
 
 import android.annotation.SuppressLint;
+import android.app.Instrumentation;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +25,7 @@ public class GameActivity extends AppCompatActivity {
     private int whichSplit = 0;
     private TextView textViewPlayersName, textViewWord;
     private MySQLiteHelper db;
-    private Word word;
+    public Word word;
     private SharedPreferences sharedPref;
     private static final int CORRECT = 0;
     private static final int WRONG = 1;
@@ -88,7 +90,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void wrongAnswer(){
-        
+        Intent newActivityStart = new Intent(GameActivity.this, ResultActivity.class);
+        //newActivityStart.putExtra;
+        GameActivity.this.startActivity(newActivityStart);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -128,6 +132,7 @@ public class GameActivity extends AppCompatActivity {
                         update();
                     } else if(progressBar.getProgress() > 99 && BUTTON_ID == WRONG){
                         progressBar.setProgress(0);
+                        wrongAnswer();
                     }
                     mHandler.postDelayed(this, 1);
                 }
