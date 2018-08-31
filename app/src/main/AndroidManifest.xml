@@ -19,7 +19,9 @@
         <activity android:name=".HowManyPlayersActivity" />
         <activity android:name=".GiveNamesActivity" />
         <activity android:name=".GameActivity" />
-        <activity android:name=".ResultActivity"></activity>
+        <activity android:name=".ResultActivity" />
+        <activity android:name=".ScoreboardActivity" />
+        <activity android:name=".ChooseCategoryActivity"></activity>
     </application>
 
 </manifest>

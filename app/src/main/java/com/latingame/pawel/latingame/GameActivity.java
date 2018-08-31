@@ -16,16 +16,19 @@ import android.widget.TextView;
 import com.latingame.pawel.latingame.game.MySQLiteHelper;
 import com.latingame.pawel.latingame.game.Word;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class GameActivity extends AppCompatActivity {
 
     private static final String TAG = GameActivity.class.getSimpleName();
     private String[] playerNames;
     private int whosTurn = 0; // first player has index 0
-    private int whichMaxim = 1;
-    private int whichSplit = 0;
-    private TextView textViewPlayersName, textViewWord;
+    private int whichWord = 0;
+
+    private TextView textViewPlayersName, textViewEnglishWord, textViewWordTranslation;
     private MySQLiteHelper db;
-    public Word word;
+    public ArrayList<Word> words;
     private SharedPreferences sharedPref;
     private static final int CORRECT = 0;
     private static final int WRONG = 1;
@@ -44,8 +47,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void showNextWord(){
-        textViewWord.setText(word.getSplit()[whichSplit]);
-        whichSplit++;
+        textViewEnglishWord.setText(words.get(whichWord).getEnglishWord());
+        textViewWordTranslation.setText(words.get(whichWord).getTranslation());
+        whichWord++;
         // TODO: NEXT ACTIVITY IF LAST
     }
 
@@ -64,7 +68,8 @@ public class GameActivity extends AppCompatActivity {
 
     private void initTextViews(){
         textViewPlayersName = findViewById(R.id.whichPlayer);
-        textViewWord = findViewById(R.id.wordInLatin);
+        textViewEnglishWord = findViewById(R.id.wordInEnglish);
+        textViewWordTranslation = findViewById(R.id.wordTranslation);
     }
 
     private void initProgressBars(){
@@ -81,17 +86,37 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initWord(){
-        db = new MySQLiteHelper(this);
+        db = MySQLiteHelper.getInstance(this);
         sharedPref = getSharedPreferences("com.latingame.pawel.latingame", MODE_PRIVATE);
 
-        whichMaxim = sharedPref.getInt("whichMaxim", whichMaxim);
-        word = db.getWord(whichMaxim);
-
+        Bundle extras = getIntent().getExtras();
+        assert extras != null;
+        String category = extras.getString("category");
+        Integer[] ids = db.getIdsWordsByCategory(category);
+        words = new ArrayList<>();
+        for(Integer id : ids)
+            words.add(db.getWord(id));
+        Collections.shuffle(words);
     }
 
     private void wrongAnswer(){
         Intent newActivityStart = new Intent(GameActivity.this, ResultActivity.class);
-        //newActivityStart.putExtra;
+        Bundle bundle = new Bundle();
+        String[] englishWords = new String[whichWord];
+        String[] translations = new String[whichWord];
+
+        for(int i = 0; i < whichWord; i++)
+        {
+            englishWords[i] = words.get(i).getEnglishWord();
+            translations[i] = words.get(i).getTranslation();
+        }
+
+        bundle.putStringArray("englishWords", englishWords);
+        bundle.putStringArray("translations", translations);
+        bundle.putStringArray("listOfPlayers", playerNames);
+        whosTurn--;
+        bundle.putString("currentPlayer", playerNames[whosTurn]);
+        newActivityStart.putExtras(bundle);
         GameActivity.this.startActivity(newActivityStart);
     }
 
@@ -142,7 +167,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
-    private void initPlayers(){
+    private void initPlayers(){ // powwino ndzialc
         Bundle extras = getIntent().getExtras();
         assert extras != null;
         playerNames = extras.getStringArray("names");

@@ -26,7 +26,7 @@ public class HowManyPlayersActivity extends AppCompatActivity {
     }
 
     private void initSeekBar(){
-        final int MAX_NUMBER_OF_PLAYERS = 5;
+        final int MAX_NUMBER_OF_PLAYERS = 10;
         final String START_VALUE = "1";
 
         seekBar = findViewById(R.id.seekBar);

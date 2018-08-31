@@ -1,58 +1,86 @@
 package com.latingame.pawel.latingame.game;
 
-public class Word {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Word implements Parcelable {
     private int id;
-    private String maxim;
+    private String englishWord;
     private String translation;
-    private String extraInfo;
-    public String[] split;
+    private String category;
 
     public Word(){}
 
     public Word(String maxim, String translation, String extraInfo){
-        this.maxim = maxim;
+        this.englishWord = maxim;
         this.translation = translation;
-        this.extraInfo = extraInfo;
-        split = maxim.split("\\s+");
-    }
-
-    public String[] getSplit() {
-        return split;
+        this.category = extraInfo;
     }
 
     @Override
     public String toString() {
-        return maxim + "\n" + translation + "\n" + extraInfo;
+        return englishWord + "\n" + translation + "\n" + category;
 
     }
-    public void setSplit(){
-        split = maxim.split("\\s+");
-    }
-    public String getMaxim() {
-        return maxim;
+
+    public String getEnglishWord() {
+        return englishWord;
     }
 
     public String getTranslation() {
         return translation;
     }
 
-    public String getExtraInfo() {
-        return extraInfo;
+    public String getCategory() {
+        return category;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setMaxim(String maxim) {
-        this.maxim = maxim;
+    public void setEnglishWord(String englishWord) {
+        this.englishWord = englishWord;
     }
 
     public void setTranslation(String translation) {
         this.translation = translation;
     }
 
-    public void setExtraInfo(String extraInfo) {
-        this.extraInfo = extraInfo;
+    public void setCategory(String category) {
+        this.category = category;
     }
+
+    protected Word(Parcel in) {
+        id = in.readInt();
+        englishWord = in.readString();
+        translation = in.readString();
+        category = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(englishWord);
+        dest.writeString(translation);
+        dest.writeString(category);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Word> CREATOR = new Parcelable.Creator<Word>() {
+        @Override
+        public Word createFromParcel(Parcel in) {
+            return new Word(in);
+        }
+
+        @Override
+        public Word[] newArray(int size) {
+            return new Word[size];
+        }
+    };
 }

@@ -59,7 +59,7 @@ public class GiveNamesActivity extends AppCompatActivity {
                         names[i] = editTextsAdapter.editTexts.get(i).getText().toString();
                 }
 
-                Intent newActivityStart = new Intent(GiveNamesActivity.this, GameActivity.class);
+                Intent newActivityStart = new Intent(GiveNamesActivity.this, ChooseCategoryActivity.class);
                 newActivityStart.putExtra("names", names);
                 GiveNamesActivity.this.startActivity(newActivityStart);
             }

@@ -7,7 +7,7 @@
     tools:context=".ResultActivity">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/englishWords"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -15,22 +15,14 @@
         android:layout_marginTop="62dp"
         android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="107dp"
-        android:text="TextView" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="153dp"
+        android:layout_marginTop="203dp"
         android:text="TextView" />
 
     <ImageButton
