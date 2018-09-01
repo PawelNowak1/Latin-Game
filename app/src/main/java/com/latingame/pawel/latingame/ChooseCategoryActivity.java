@@ -20,8 +20,6 @@ import java.util.List;
 public class ChooseCategoryActivity extends AppCompatActivity {
 
     MySQLiteHelper mySQLiteHelper;
-    private List<String> buttonsText;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,15 +148,14 @@ public class ChooseCategoryActivity extends AppCompatActivity {
     }
 
     private void initListView(){
-
-        buttonsText = Arrays.asList(mySQLiteHelper.getCategories());
+        final String[] buttonsText = mySQLiteHelper.getCategories();
         ListView listView = findViewById(R.id.categoryListView);
         ButtonsAdapter buttonsAdapter = new ButtonsAdapter(this, R.layout.custom_button, buttonsText);
         listView.setAdapter(buttonsAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startGameActivity(buttonsText.get(i));
+                startGameActivity(buttonsText[i]);
 
             }
         });

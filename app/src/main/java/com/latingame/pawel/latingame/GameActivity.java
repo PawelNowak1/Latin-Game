@@ -115,6 +115,8 @@ public class GameActivity extends AppCompatActivity {
         bundle.putStringArray("translations", translations);
         bundle.putStringArray("listOfPlayers", playerNames);
         whosTurn--;
+        if(whosTurn < 0)
+            whosTurn = playerNames.length - 1;
         bundle.putString("currentPlayer", playerNames[whosTurn]);
         newActivityStart.putExtras(bundle);
         GameActivity.this.startActivity(newActivityStart);

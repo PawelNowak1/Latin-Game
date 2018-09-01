@@ -8,21 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.latingame.pawel.latingame.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class EditTextsAdapter extends ArrayAdapter<String> {
+public class TextViewsAdapter extends ArrayAdapter<String> {
 
     private int layoutResource;
-    public ArrayList<EditText> editTexts;
 
-    public EditTextsAdapter(Context context, int layoutResource, List<String> texts) {
+    public TextViewsAdapter(Context context, int layoutResource, String[] texts) {
         super(context, layoutResource, texts);
         this.layoutResource = layoutResource;
-        editTexts = new ArrayList<>();
     }
 
     @NonNull
@@ -35,13 +33,12 @@ public class EditTextsAdapter extends ArrayAdapter<String> {
             view = layoutInflater.inflate(layoutResource, null);
         }
 
-        String hint = getItem(position);
+        String text = getItem(position);
 
-        if (hint != null) {
-            EditText editText = view.findViewById(R.id.editText);
-            if (editText != null && editText.getHint() == null) {
-                editText.setHint(hint);
-                editTexts.add(editText);
+        if (text != null) {
+            TextView textView = view.findViewById(R.id.textViewCustom);
+            if (textView != null) {
+                textView.setText(text);
             }
         }
         return view;

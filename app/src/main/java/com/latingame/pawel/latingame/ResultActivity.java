@@ -6,11 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.latingame.pawel.latingame.adapters.TextViewsAdapter;
 import com.latingame.pawel.latingame.game.Word;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -38,19 +44,46 @@ public class ResultActivity extends AppCompatActivity {
         }
     }
 
-    private void initTextViews(){
-        TextView textViewEnglishWords = findViewById(R.id.englishWords);
-        String text = "";
+    /*
+        this method return string array which provides gridView that shows:
+                    1 | 5
+                    2 | 6
+                    3 | 7
+                    5 |
 
-        StringBuilder stringBuilder = new StringBuilder("");
-        for (String englishWord : englishWords) {
-            stringBuilder.append(englishWord);
-            stringBuilder.append("\n");
+        instead of
+                    1 | 2
+                    3 | 4
+                    5 | 6
+                    7
+     */
+    private String[] getVerticallyGridView(String[] englishWords){
+        String[] englishWordsGridView = new String[englishWords.length];
+
+        int k = 1;
+        if(englishWords.length % 2 == 0)
+            k = 0;
+        int j = 0;
+        for(int i = 0; i < englishWords.length; i++){
+            englishWordsGridView[i] = (j + 1) + ". " + englishWords[j];
+            i++;
+            if(englishWords.length / 2 + k < englishWords.length)
+                englishWordsGridView[i] = (englishWords.length / 2 + k + 1) + ". " + englishWords[englishWords.length / 2 + k];
+            k++;
+            j++;
         }
-        textViewEnglishWords.setText(stringBuilder);
+
+        return englishWordsGridView;
+    }
+    private void initTextViews(){
+        String[] englishWordsGridView = getVerticallyGridView(englishWords);
+
+        GridView gridView = findViewById(R.id.gridView_result);
+        TextViewsAdapter textViewsAdapter = new TextViewsAdapter(this, R.layout.custom_text_view, englishWordsGridView);
+        gridView.setAdapter(textViewsAdapter);
 
         TextView question = findViewById(R.id.question);
-        String questionText = "Czy po sprawdzeniu łacińskiej sentencji gracz: " + currentPlayer + " poprawnie wypowiedział swoją kwestię?";
+        String questionText = "Czy po sprawdzeniu kolejnych słów gracz: " + currentPlayer + " poprawnie wypowiedział swoją kwestię?";
         question.setText(questionText);
     }
 

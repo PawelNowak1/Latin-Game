@@ -21,12 +21,10 @@ import java.util.List;
 public class ButtonsAdapter extends ArrayAdapter<String>{
 
     private int layoutResource;
-    public ArrayList<Button> buttons;
 
-    public ButtonsAdapter(Context context, int layoutResource, List<String> buttonsText) {
+    public ButtonsAdapter(Context context, int layoutResource, String[] buttonsText) {
         super(context, layoutResource, buttonsText);
         this.layoutResource = layoutResource;
-        buttons = new ArrayList<>();
     }
 
     @NonNull
@@ -45,8 +43,6 @@ public class ButtonsAdapter extends ArrayAdapter<String>{
             Button button = view.findViewById(R.id.button_custom);
             if (button != null) {
                 button.setText(buttonText);
-                buttons.add(button);
-
             }
 
         }
