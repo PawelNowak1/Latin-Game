@@ -1,6 +1,7 @@
 package com.latingame.pawel.latingame;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ public class ResultActivity extends AppCompatActivity {
     private String currentPlayer;
     private static final int CORRECT = 0;
     private static final int WRONG = 1;
-
+    boolean alreadyExecuted = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,17 +133,33 @@ public class ResultActivity extends AppCompatActivity {
                 public void run() {
                     int progress = progressBar.getProgress();
                     progressBar.setProgress(progress + 2);
-                    if(progressBar.getProgress() > 99 && BUTTON_ID == CORRECT){
+                    if(progressBar.getProgress() > 99 && BUTTON_ID == CORRECT && !alreadyExecuted){
                         progressBar.setProgress(0);
-                        //update();
-                    } else if(progressBar.getProgress() > 99 && BUTTON_ID == WRONG){
+                        alreadyExecuted = true;
+                        correctButtonPressed();
+
+                    } else if(progressBar.getProgress() > 99 && BUTTON_ID == WRONG && !alreadyExecuted){
                         progressBar.setProgress(0);
-                        //wrongAnswer();
+                        alreadyExecuted = true;
+                        wrongButtonPressed();
                     }
+
                     mHandler.postDelayed(this, 1);
                 }
             };
         });
 
+    }
+
+    private void correctButtonPressed() {
+        Intent newActivityStart = new Intent(ResultActivity.this, ChooseCategoryActivity.class);
+        newActivityStart.putExtra("names", getIntent().getExtras().getStringArray("listOfPlayers"));
+        ResultActivity.this.startActivity(newActivityStart);
+    }
+
+    private void wrongButtonPressed(){
+        Intent newActivityStart = new Intent(ResultActivity.this, ChooseCategoryActivity.class);
+        newActivityStart.putExtra("names", getIntent().getExtras().getStringArray("listOfPlayers"));
+        ResultActivity.this.startActivity(newActivityStart);
     }
 }

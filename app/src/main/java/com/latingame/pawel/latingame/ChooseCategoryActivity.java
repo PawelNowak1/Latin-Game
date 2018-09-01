@@ -139,8 +139,68 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         mySQLiteHelper.addWord(new Word("baker", "piekarz", "zawody"));
         mySQLiteHelper.addWord(new Word("plumber", "hydraulik", "zawody"));
         mySQLiteHelper.addWord(new Word("stockbroker", "makler giełdowy", "zawody"));
-*/
 
+        mySQLiteHelper.addWord(new Word("architekt", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("naukowiec", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("biolog", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("ekonomista", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("historyk", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("matematyk", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("filolog", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("fizyk", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("socjolog", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("inżynier", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("lekarz", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("dentysta", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("okulista", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("ortopeda", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("chirurg", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("weterynarz", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("pielęgniarka", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("farmaceuta", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("nauczyciel", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("wykładowca", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("prawnik", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("prokurator", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("artysta", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("malarz",  "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("rzeźbiarz", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("projektant",  "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("muzyk", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("dyrygent", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("skrzypek", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("reżyser", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("pisarz", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("powieściopisarz", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("dziennikarz", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("księgowy", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("urzędnik", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("sekretarz", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("kasjer", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("strażak", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("policjant", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("listonosz", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("marynarz", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("ogrodnik", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("grabarz", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("wynalazca", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("szpieg", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("tłumacz", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("fotograf", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("kierowca", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("polityk", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("fryzjer", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("lotnik", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("górnik", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("bibliotekarz", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("elektryk", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("portier", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("rolnik", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("sprzątaczka", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("kosmetyczka", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("piekarz", "", "zawody po polsku"));
+        mySQLiteHelper.addWord(new Word("hydraulik", "", "zawody po polsku"));
+        */
     }
 
     private void init(){
